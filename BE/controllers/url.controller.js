@@ -5,27 +5,37 @@ const Op = db.Sequelize.Op;
 exports.create = (req, res) => {
     // Validate request
     if (!req.body.url) {
-      res.status(400).send({
-        message: "URL can not be empty!"
-      });
-      return;
+        res.status(400).send({
+            message: "URL can not be empty!"
+        });
+        return;
     }
-  
-    // Create a Tutorial
+
+    // Create a URL
     const url = {
         hashed: "11111",
         full_Url: req.body.url,
     };
-  
-    // Save Tutorial in the database
-    Url.create(url)
-      .then(data => {
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while creating the URL record."
+
+    const isExist = Url.findOne({ where: { full_Url: req.body.url } })
+        .then(token => token !== null)
+        .then(isUnique => isUnique);
+
+    if (!isExist) {
+        // Save URL in the database
+        Url.create(url)
+            .then(data => {
+                res.send(data);
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message:
+                        err.message || "Some error occurred while creating the URL record."
+                });
+            });
+    } else {
+        res.status(400).send({
+            message: "URL already exist!"
         });
-      });
-  };
+    }
+};
