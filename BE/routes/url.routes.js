@@ -4,10 +4,13 @@ module.exports = app => {
     var router = require("express").Router();
   
     // Create a new URL
-    router.post("/", urlController.create);
+    router.post("/api/url", urlController.create);
 
     // GET a  URL based on hash
-    router.get("/:short", urlController.get);
+    router.get("/api/url/:short", urlController.get);
   
-    app.use('/api/url', router);
+    // todo: re-direct
+    router.get("/:short", urlController.get);
+
+    app.use('/', router);
   };
