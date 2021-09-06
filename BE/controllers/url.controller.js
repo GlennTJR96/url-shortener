@@ -39,3 +39,26 @@ exports.create = (req, res) => {
         });
     }
 };
+
+exports.get = (req, res) => {
+    // Validate request
+
+    const short = req.params.short;
+
+    if (!short) {
+        res.status(400).send({
+            message: "URL can not be empty!"
+        });
+    }
+
+    Url.findOne({ where: { hashed: short } })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving url."
+            });
+        })
+};
