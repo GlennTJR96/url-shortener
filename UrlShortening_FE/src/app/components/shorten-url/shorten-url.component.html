@@ -2,7 +2,9 @@
     <form [formGroup]="urlForm" class="input-form" (submit)="doShorten()">
         <mat-form-field class="url_input" appearance="fill">
             <mat-label>Enter your Url!</mat-label>
-            <input matInput formControlName="suppliedUrlFormControlName" placeholder="Enter your URL here">
+            <input matInput formControlName="suppliedUrlFormControl" placeholder="Enter your URL here">
+            <mat-error *ngIf="this.urlForm.get('suppliedUrlFormControl')?.hasError('required')">Please enter an input!</mat-error>
+            <mat-error *ngIf="this.urlForm.get('suppliedUrlFormControl')?.hasError('pattern')">Please enter a valid URL. Did you forget to input 'https://..' or 'http://'?</mat-error>
         </mat-form-field>
     </form>
 
