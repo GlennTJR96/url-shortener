@@ -80,7 +80,7 @@ exports.redirect = (req, res) => {
     Url.findOne({ where: { hashed: short } })
         .then(data => {
             if (data != null) {
-                res.send(data.full_Url);
+                res.send(data);
             } else {
                 // should redirect user back to landing page
                 res.send("no result");
