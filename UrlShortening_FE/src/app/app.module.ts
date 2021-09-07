@@ -15,15 +15,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ShortenUrlComponent,
     RedirectToUrlComponent,
-    NavbarComponent
+    NavbarComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +38,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatIconModule,
     MatCardModule,
     ClipboardModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,30 +1,35 @@
 <div class="url_page">
-    <mat-card class="url_card">
-        <div class="url_title>">
-            <h1 class="url_instruction" (click)="this.hasResult = !this.hasResult">Please paste your Url below:</h1>
-        </div>
-
-        <form [formGroup]="urlForm" class="input-form" (submit)="doShorten()">
-            <mat-form-field class="url_input" appearance="fill">
-                <mat-label>Enter your Url!</mat-label>
-                <input matInput formControlName="suppliedUrlFormControl" placeholder="Enter your URL here">
-                <mat-error *ngIf="this.urlForm.get('suppliedUrlFormControl')?.hasError('required')">Please enter an
-                    input!</mat-error>
-                <mat-error *ngIf="this.urlForm.get('suppliedUrlFormControl')?.hasError('pattern')">Please enter a
-                    valid
-                    URL. Did you forget to input 'https://..' or 'http://'?</mat-error>
-            </mat-form-field>
-        </form>
-
-    </mat-card>
-
-    <mat-card class="url_result" *ngIf="hasResult">
-        <div class="result">
-            <h1 class="url_result_text">This is your result:</h1>
-            <div class="url_result_shortened_copy">
-                <h1 class="url_result_shortened">{{shortenedUrl}}</h1>
-                <mat-icon class="copy-icon" [cdkCopyToClipboard]="shortenedUrl" matTooltip="Copy to clipboard!" >content_copy</mat-icon>
+    <div>
+        <mat-card class="url_card">
+            <div class="url_title>">
+                <h1 class="url_instruction" (click)="this.hasResult = !this.hasResult">Please paste your Url below:</h1>
             </div>
-        </div>
-    </mat-card>
+
+            <form [formGroup]="urlForm" class="input-form" (submit)="doShorten()">
+                <mat-form-field class="url_input" appearance="fill">
+                    <mat-label>Enter your Url!</mat-label>
+                    <input matInput formControlName="suppliedUrlFormControl" placeholder="Enter your URL here">
+                    <mat-error *ngIf="this.urlForm.get('suppliedUrlFormControl')?.hasError('required')">Please enter an
+                        input!</mat-error>
+                    <mat-error *ngIf="this.urlForm.get('suppliedUrlFormControl')?.hasError('pattern')">Please enter a
+                        valid
+                        URL. Did you forget to input 'https://..' or 'http://'?</mat-error>
+                </mat-form-field>
+            </form>
+        </mat-card>
+    </div>
+    <div class="url_result">
+        <mat-card class="url_result_card" *ngIf="hasResult">
+            <div class="result" *ngIf="!this.isLoading">
+                <h1 class="url_result_text">This is your result:</h1>
+                <div class="url_result_shortened_copy">
+                    <h1 class="url_result_shortened">{{shortenedUrl}}</h1>
+                    <mat-icon class="copy-icon" [cdkCopyToClipboard]="shortenedUrl" matTooltip="Copy to clipboard!">
+                        content_copy</mat-icon>
+                </div>
+            </div>
+
+            <app-spinner *ngIf="this.isLoading"></app-spinner>
+        </mat-card>
+    </div>
 </div>

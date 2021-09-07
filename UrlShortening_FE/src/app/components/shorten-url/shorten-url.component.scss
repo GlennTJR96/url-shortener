@@ -15,10 +15,14 @@
 
 .url_input {
     position: relative;
-    width: 100%
+    width: 100%;
 }
 
 .url_result {
+    position: relative;
+}
+
+.url_result_card {
     margin-top: 2rem;
     box-shadow: 0 0.25rem 0.25rem rgb(0, 0, 0, 0.25);
     width: 100%;

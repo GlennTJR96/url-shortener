@@ -10,6 +10,7 @@ import { UrlService } from 'src/app/services/url.service';
 export class ShortenUrlComponent implements OnInit {
 
   hasResult: boolean = false;
+  isLoading: boolean = false;
   shortenedUrl: string = 'placeholder.com';
 
   urlRegEx = "^(https|ftp|http|ftps):\\/\\/([a-z\\d_]+\\.)?(([a-zA-Z\\d_]+)(\\.[a-zA-Z]{2,6}))(\\/[a-zA-Z\\d_\\%\\-=\\+]+)*(\\?)?([a-zA-Z\\d=_\\+\\%\\-&\\{\\}\\:]+)?";
@@ -38,9 +39,15 @@ export class ShortenUrlComponent implements OnInit {
 
     if (suppliedUrlFormControl && this.urlForm.valid) {
       const input = suppliedUrlFormControl.value;
+      this.isLoading = true;
+      this.hasResult = true;
       this.urlService.saveNewUrl(input).subscribe(res => {
-        this.hasResult = true;
-        this.shortenedUrl = location.origin + '/' + res.hashed;
+        setTimeout(() => {
+          // Mock a short pause to show some lag
+          this.shortenedUrl = location.origin + '/' + res.hashed;
+          this.isLoading = false;
+        }, 1000)
+
       });
     }
   }
