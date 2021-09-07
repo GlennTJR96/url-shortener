@@ -10,7 +10,7 @@ module.exports = app => {
     router.get("/api/url/:short", urlController.get);
   
     // todo: re-direct
-    router.get("/:short", urlController.get);
+    router.get("/:short", urlController.redirect);
 
     app.use('/', router);
   };

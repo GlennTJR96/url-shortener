@@ -17,15 +17,12 @@ exports.create = (req, res) => {
     Url.findOne({ where: { full_Url: req.body.url } })
         .then(data => {
             if (data != null) {
-                res.status(400).send({
-                    message: "URL already exist"
-                });
+                // url exist, send the shortform instead
+                res.send(data);
             } else {
-                
-                const hashed = nanoid(10);
-                // Create a URL
+                // Create a shortened URL
                 const url = {
-                    hashed: hashed,
+                    hashed: nanoid(7),
                     full_Url: req.body.url,
                 };
 
@@ -58,6 +55,34 @@ exports.get = (req, res) => {
             if (data != null) {
                 res.send(data);
             } else {
+                res.send("no result");
+            }
+
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving url."
+            });
+        })
+};
+
+exports.redirect = (req, res) => {
+
+    const short = req.params.short;
+    // Validate request
+    if (!short) {
+        res.status(400).send({
+            message: "URL can not be empty!"
+        });
+    }
+
+    Url.findOne({ where: { hashed: short } })
+        .then(data => {
+            if (data != null) {
+                res.send(data.full_Url);
+            } else {
+                // should redirect user back to landing page
                 res.send("no result");
             }
 
