@@ -55,7 +55,7 @@ exports.get = (req, res) => {
             if (data != null) {
                 res.send(data);
             } else {
-                res.send("no result");
+                res.send(null);
             }
 
         })
@@ -83,9 +83,8 @@ exports.redirect = (req, res) => {
                 res.send(data);
             } else {
                 // should redirect user back to landing page
-                res.send("no result");
+                res.send(null);
             }
-
         })
         .catch(err => {
             res.status(500).send({
