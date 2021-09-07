@@ -21,7 +21,7 @@ export class UrlService {
     return this.http.post(baseUrl, data);
   }
 
-  getUrl(hash: string) : Observable<any> {
-    return this.http.get(baseUrl + '/' + hash);
+  getUrl(hash: string) : Observable<Url> {
+    return this.http.get<Url>(baseUrl + '/' + hash);
   }
 }
