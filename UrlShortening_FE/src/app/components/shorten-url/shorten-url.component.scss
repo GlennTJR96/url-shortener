@@ -1,3 +1,42 @@
+.url_page {
+    margin: 0 auto;
+    width: 50%
+}
+
+.url_card {
+    box-shadow: 0 0.25rem 0.25rem rgb(0, 0, 0, 0.25);
+    width: 100%;
+}
+.url_instruction, .url_result_text {
+    text-align: center;
+    font-weight: 800;
+    font-size: 30px;
+}
+
 .url_input {
+    position: relative;
     width: 100%
+}
+
+.url_result {
+    margin-top: 2rem;
+    box-shadow: 0 0.25rem 0.25rem rgb(0, 0, 0, 0.25);
+    width: 100%;
+}
+
+.url_result_shortened_copy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.copy-icon {
+    margin-left: 1rem;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.url_result_shortened {
+    margin-top: 0.5rem;
+    font-size: 30px;
 }

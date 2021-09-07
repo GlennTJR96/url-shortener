@@ -10,7 +10,7 @@ import { UrlService } from 'src/app/services/url.service';
 export class ShortenUrlComponent implements OnInit {
 
   hasResult: boolean = false;
-  shortenedUrl: string = '';
+  shortenedUrl: string = 'placeholder.com';
 
   urlRegEx = "^(https|ftp|http|ftps):\\/\\/([a-z\\d_]+\\.)?(([a-zA-Z\\d_]+)(\\.[a-zA-Z]{2,6}))(\\/[a-zA-Z\\d_\\%\\-=\\+]+)*(\\?)?([a-zA-Z\\d=_\\+\\%\\-&\\{\\}\\:]+)?";
 
