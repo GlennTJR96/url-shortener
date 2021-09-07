@@ -10,18 +10,32 @@ import { DOCUMENT } from '@angular/common';
 })
 export class RedirectToUrlComponent implements OnInit {
 
+  isLoading: boolean = false;
+  errorMsg: string = 'Invalid link, please create a new one. Redirecting you to main page...';
+
   constructor(@Inject(DOCUMENT) private document: Document,
-    private route: ActivatedRoute,
+    private router: Router,
     private urlService: UrlService) { }
 
   ngOnInit(): void {
+    this.isLoading = true;
     const hashed = location.pathname.substring(1);
     this.urlService.getUrl(hashed).subscribe(res => {
-      const url = res.full_Url;
-      document.location.href = url;
+      if (res == null) {
+        // redirect to main pg
+        this.isLoading = false;
+
+        setTimeout(() => {
+          this.router.navigateByUrl('');
+        }, 2000);
+      } else {
+        const url = res.full_Url;
+        document.location.href = url;
+      }
     },
       error => {
         console.log('ERROR', error);
+        this.router.navigateByUrl('');
       });
 
   }

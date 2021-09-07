@@ -1,1 +1,4 @@
-<p>redirect-to-url works!</p>
+<div class ="redirect-wrapper">
+    <app-spinner *ngIf="this.isLoading"></app-spinner>
+    <h1 class ="warning" *ngIf="!this.isLoading">{{errorMsg}}</h1>
+</div>
