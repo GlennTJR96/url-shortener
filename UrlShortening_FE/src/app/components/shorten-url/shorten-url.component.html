@@ -1,1 +1,12 @@
-<p>shorten-url works!</p>
+<div>
+    <form [formGroup]="urlForm" class="input-form" (submit)="doShorten()">
+        <mat-form-field class="url_input" appearance="fill">
+            <mat-label>Enter your Url!</mat-label>
+            <input matInput formControlName="suppliedUrlFormControlName" placeholder="Enter your URL here">
+        </mat-form-field>
+    </form>
+
+    <div class="result" *ngIf="hasResult">
+        <p>This is your result: {{shortenedUrl}} </p>
+    </div>
+</div>

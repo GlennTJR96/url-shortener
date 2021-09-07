@@ -14,7 +14,10 @@ export class UrlService {
 
   constructor(private http: HttpClient) { }
 
-  saveNewUrl(data: any): Observable<any> {
+  saveNewUrl(url: string): Observable<any> {
+    let data = {
+      'url': url
+    }
     return this.http.post(baseUrl, data);
   }
 
