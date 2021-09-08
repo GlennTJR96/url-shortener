@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { RedirectToUrlComponent } from './redirect-to-url.component';
+import { SpinnerComponent } from '../spinner/spinner.component';
+
 
 describe('RedirectToUrlComponent', () => {
   let component: RedirectToUrlComponent;
@@ -8,9 +13,10 @@ describe('RedirectToUrlComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RedirectToUrlComponent ]
+      declarations: [RedirectToUrlComponent, SpinnerComponent],
+      imports: [RouterTestingModule, HttpClientTestingModule, MatProgressSpinnerModule]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
