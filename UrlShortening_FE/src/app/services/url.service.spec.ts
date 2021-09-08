@@ -4,12 +4,15 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { UrlService } from './url.service';
 import { Url } from '../models/url.model';
 
-const expectedUrlResponse: Url = {
+const expectedShortenedUrlResponse: Url = {
   hashed: 'QwErTy',
   full_Url: 'https://tech.gov.sg'
 };
 
-const expectedShortened: String = 'QwErTy';
+const expectedFullUrl: Url = {
+  hashed: 'QwErTy',
+  full_Url: 'https://tech.gov.sg'
+}
 
 describe('UrlService', () => {
   let service: UrlService;
@@ -29,25 +32,25 @@ describe('UrlService', () => {
 
   it('should fetch a shortened link based on given full Url', () => {
     service.saveNewUrl('https://tech.gov.sg').subscribe(res => {
-      expect(res).toEqual(expectedShortened);
+      expect(res).toEqual(expectedShortenedUrlResponse);
     });
 
     const testRequest = httpTestingController.expectOne('http://localhost:8080/api/url');
     expect(testRequest.request.method).toEqual('POST');
 
-    testRequest.flush(expectedShortened);
+    testRequest.flush(expectedShortenedUrlResponse);
     httpTestingController.verify();
   });
 
   it('should fetch a full URL based on given hash', () => {
     service.getUrl('QwErTy').subscribe(res => {
-      expect(res).toEqual(expectedUrlResponse);
+      expect(res).toEqual(expectedFullUrl);
     });
 
     const testRequest = httpTestingController.expectOne('http://localhost:8080/api/url/QwErTy');
     expect(testRequest.request.method).toEqual('GET');
 
-    testRequest.flush(expectedUrlResponse);
+    testRequest.flush(expectedFullUrl);
     httpTestingController.verify();
   });
 });
