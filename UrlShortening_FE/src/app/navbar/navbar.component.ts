@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatToolbarModule} from '@angular/material/toolbar';
-
 
 @Component({
   selector: 'app-navbar',
