@@ -26,4 +26,8 @@ ng serve
 ```
 
 ### Tests
-Currently, only some Angular tests are written
+Currently, only some Angular tests are written.
+Karma-Jasmine test are run ChromeHeadless 
+```
+ng test
+```
